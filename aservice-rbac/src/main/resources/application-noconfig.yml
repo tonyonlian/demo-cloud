@@ -1,0 +1,64 @@
+
+
+
+
+server:
+  port: 8401
+
+spring:
+  application:
+    name: aservice-rbac
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/linnadb?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 1q2w3e
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# debug: true
+
+
+# 开启eureka的客户端重试及配置
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true   #开启重试机制
+        
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    
+  mapper-locations:  classpath:com/example/cloud/starter/persistence/**/*.xml
+  
+#配置远程调用负载均衡策略
+
+aservice-rbac: 
+  ribbon:
+    NFLoadBalancerRuleClassName: com.example.cloud.aservice.rbac.config.CustomLoadBanlanceRule
+
+
+# 防止远程加载，第一次超时
+ribbon:
+  eager-load:
+    enabled: true    #开启饥饿加载
+    clients: aservice-sms #饥饿加载服务
+  # 重试的相关配置
+  ConnectTimeout: 250             #请求连接的超时时间
+  ReadTimeout: 250                #请求处理的超时时间
+  OkToRetryOnAllOperations: true  #对所有操作请求都进行重试
+  MaxAutoRetriesNextServer: 3     #切换实例的重试次数
+  MaxAutoRetries: 1               #对当前实例的重试次数
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/eureka/
+
+user:
+  init:
+    password: 1111111

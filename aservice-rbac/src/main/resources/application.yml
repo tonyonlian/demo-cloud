@@ -1,0 +1,7 @@
+app:
+  id: demo-cloud-aservice-rbac
+apollo:
+  bootstrap:
+    enabled: true
+    namespaces: application,TEST1.eureka-client
+  meta: http://localhost:8080

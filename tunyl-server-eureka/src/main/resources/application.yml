@@ -1,0 +1,19 @@
+server:
+  port: 8761
+  servlet:
+    context-path: /eureka
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    hostname: localhost  #该服务部署的主机名称，参考windows的hosts文件或linux的/etc/hosts
+  client:
+    #是否从其他实例获取服务注册信息，因为这是一个单节点的EurekaServer，不需要同步其他的EurekaServer节点的数据，所以设置为false；
+    fetch-registry: false
+    #表示是否向eureka注册服务，即在自己的eureka中注册自己，默认为true，此处应该设置为false；
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
