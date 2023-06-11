@@ -61,6 +61,12 @@
             <groupId>com.ctrip.framework.apollo</groupId>
             <artifactId>apollo-client</artifactId>
         </dependency>
+<!--        限流组件-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+            <!--artifactId>spring-cloud-starter-hystrix  新版不要用这个</artifactId-->
+        </dependency>
     </dependencies>
 
     <build>

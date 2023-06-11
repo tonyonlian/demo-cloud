@@ -1,7 +1,3 @@
-app:
-  id: demo-cloud-aservice-sms
-apollo:
-  bootstrap:
-    enabled: true
-    namespaces: application,TEST1.eureka-client
-  meta: http://localhost:8080
+spring:
+  profiles:
+    active: apolloconfig

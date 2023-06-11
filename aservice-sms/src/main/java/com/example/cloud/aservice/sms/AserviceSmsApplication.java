@@ -3,6 +3,7 @@ package com.example.cloud.aservice.sms;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @SpringBootApplication(scanBasePackages = {"com.example.cloud"})
 @EnableEurekaClient
 @EnableApolloConfig
+@EnableCircuitBreaker
 public class AserviceSmsApplication {
     public static void main(String[] args) {
         SpringApplication.run(AserviceSmsApplication.class);
